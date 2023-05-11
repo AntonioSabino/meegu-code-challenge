@@ -10,11 +10,11 @@ Este projeto é parte de um desafio para testar seus conhecimentos em desenvolvi
 
 - **Endpoints**:
 
-  - [] Deve ser possível criar usuário;
-  - [] Deve ser possível atualizar usuário;
-  - [] Deve ser possível deletar usuário;
-  - [] Deve ser possível buscar todos os usuários;
-  - [] Deve ser possível buscar um único usuário pelo seu ID.
+  - [x] Deve ser possível criar usuário;
+  - [x] Deve ser possível atualizar usuário;
+  - [x] Deve ser possível deletar usuário;
+  - [x] Deve ser possível buscar todos os usuários;
+  - [x] Deve ser possível buscar um único usuário pelo seu ID.
 
 - **Guard no método DELETE**: 
 
@@ -23,10 +23,10 @@ Este projeto é parte de um desafio para testar seus conhecimentos em desenvolvi
 - **Validações no método POST**: 
 
   - No método POST, realizar as seguintes validações nos parâmetros de entrada do body:
-    - [] name: uma string obrigatória com no mínimo 2 caracteres e no máximo 100;
-    - [] birthdate: uma data obrigatória;
-    - [] zipcode: uma string obrigatória;
-    - [] acceptedTerms: um booleano.
+    - [x] name: uma string obrigatória com no mínimo 2 caracteres e no máximo 100;
+    - [x] birthdate: uma data obrigatória;
+    - [x] zipcode: uma string obrigatória;
+    - [x] acceptedTerms: um booleano.
 
 - **Busca de informações do CEP**: 
   
@@ -34,7 +34,7 @@ Este projeto é parte de um desafio para testar seus conhecimentos em desenvolvi
 
 - **Atualização de data/hora**: 
 
-  - [] No momento da atualização de um usuário, inserir a data/hora da atualização no campo updatedAt.
+  - [x] No momento da atualização de um usuário, inserir a data/hora da atualização no campo updatedAt.
 
 ## Instruções de execução
 
@@ -44,9 +44,9 @@ Em construção...
 
 ## Pontos Extras
 
-- [] Armazenamento em banco de dados MySQL utilizando o Docker Compose;
-- [] Utilização do ORM Prisma;io para facilitar o acesso e manipulação dos dados no banco de dados relacional;
-- [] Inclusão de regras de Lint no projeto para garantir a consistência e qualidade do código;
+- [x] Armazenamento em banco de dados MySQL utilizando o Docker Compose;
+- [x] Utilização do ORM Prisma.io para facilitar o acesso e manipulação dos dados no banco de dados relacional;
+- [x] Inclusão de regras de Lint no projeto para garantir a consistência e qualidade do código;
 - [] Validação de idade no método POST, verificando se o usuário tem pelo menos 18 anos para efetuar o cadastro;
 - [] Escrita de pelo menos 1 teste unitário para cada função do CRUD;
 - [] Criação de uma collection no Postman com todas as requests;
