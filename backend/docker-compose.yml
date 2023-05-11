@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: meeguapi
+    ports:
+      - "3306:3306"
+
+  app:
+    build: .
+    container_name: meeguapi-app
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+    command: >
+      bash -c "npm install && npm run build && npm run start:dev"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
