@@ -44,6 +44,7 @@ export class UsersRepository {
       where: {
         name: {
           contains: name,
+          mode: 'insensitive',
         },
       },
     });
