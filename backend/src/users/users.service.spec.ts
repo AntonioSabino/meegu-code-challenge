@@ -202,5 +202,17 @@ describe('UsersService', () => {
       await expect(service.remove(2)).rejects.toThrow('User not found');
       await expect(service.remove(2)).rejects.toThrowError(NotFoundError);
     });
+
+    it('should throw an error if user has an active loan', async () => {
+      jest
+        .spyOn(service, 'remove')
+        .mockRejectedValue(
+          new Error('User has an active loan and cannot be deleted'),
+        );
+
+      await expect(service.remove(1)).rejects.toThrow(
+        'User has an active loan and cannot be deleted',
+      );
+    });
   });
 });

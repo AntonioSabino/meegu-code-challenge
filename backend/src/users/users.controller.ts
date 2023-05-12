@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   Query,
+  HttpCode,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -19,6 +20,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
+  @HttpCode(201)
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
@@ -45,6 +47,7 @@ export class UsersController {
 
   @Delete(':id')
   @UseGuards(AccessTokenGuard)
+  @HttpCode(204)
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
