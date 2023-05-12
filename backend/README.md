@@ -47,9 +47,9 @@ Em construção...
 - [x] Armazenamento em banco de dados MySQL utilizando o Docker Compose;
 - [x] Utilização do ORM Prisma.io para facilitar o acesso e manipulação dos dados no banco de dados relacional;
 - [x] Inclusão de regras de Lint no projeto para garantir a consistência e qualidade do código;
-- [] Validação de idade no método POST, verificando se o usuário tem pelo menos 18 anos para efetuar o cadastro;
-- [] Escrita de pelo menos 1 teste unitário para cada função do CRUD;
-- [] Criação de uma collection no Postman com todas as requests;
-- [] Adição de filtro pelo nome no método GET utilizando query parameters;
-- [] Observar os códigos HTTP de retorno para as operaçõe da API;
-- [] Exibir as mensagens de confirmação e/ou erro obtidos em cada operação do CRUD.
+- [x] Validação de idade no método POST, verificando se o usuário tem pelo menos 18 anos para efetuar o cadastro;
+- [ ] Escrita de pelo menos 1 teste unitário para cada função do CRUD;
+- [ ] Criação de uma collection no Postman com todas as requests;
+- [ ] Adição de filtro pelo nome no método GET utilizando query parameters;
+- [ ] Observar os códigos HTTP de retorno para as operaçõe da API;
+- [x] Exibir as mensagens de confirmação e/ou erro obtidos em cada operação do CRUD.

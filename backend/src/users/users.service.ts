@@ -3,13 +3,27 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersRepository } from './repositories/users.repository';
 import { NotFoundError } from 'src/common/errors/types/NotFoundError';
+import { UserAgeError } from 'src/common/errors/types/UserAgeError';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly repository: UsersRepository) {}
 
   async create(createUserDto: CreateUserDto) {
-    return this.repository.create(createUserDto);
+    const { birthdate } = createUserDto;
+
+    const currentDate = new Date();
+    const eighteenYearsAgo = new Date(
+      currentDate.getFullYear() - 18,
+      currentDate.getMonth(),
+      currentDate.getDate(),
+    );
+
+    if (new Date(birthdate) <= eighteenYearsAgo) {
+      return this.repository.create(createUserDto);
+    } else {
+      throw new UserAgeError('User must be at least 18 years old');
+    }
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
