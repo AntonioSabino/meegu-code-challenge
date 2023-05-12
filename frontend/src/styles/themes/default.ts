@@ -11,11 +11,15 @@ export const defaultTheme = {
     'gray-800': '#1A1A1A',
     'gray-900': '#0D0D0D',
 
-    'puple-300': '#8284FA',
-    'puple-500': '#5E60CE',
+    'purple-300': '#8284FA',
+    'purple-500': '#5E60CE',
 
     'blue-300': '#4EA8DE',
     'blue-500': '#1E6F9F',
+
+    'pink-300': '#F472B6',
+    'pink-500': '#EB4795',
+    'pink-700': '#C02661',
 
     red: '#E25858',
   },
