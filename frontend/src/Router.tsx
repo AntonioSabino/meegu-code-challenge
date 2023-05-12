@@ -5,11 +5,12 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 import DefaultLayout from './layout'
+import Home from './Pages/Home'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<DefaultLayout />}>
-      <Route path="/" element={<h1>Home</h1>} />
+      <Route path="/" element={<Home />} />
     </Route>,
   ),
 )
