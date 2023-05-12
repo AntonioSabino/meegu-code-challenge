@@ -59,4 +59,8 @@ export class UsersService {
 
     return user;
   }
+
+  async findManyByName(name: string) {
+    return this.repository.findManyByName(name);
+  }
 }

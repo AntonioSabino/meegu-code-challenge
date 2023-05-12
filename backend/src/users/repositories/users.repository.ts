@@ -14,7 +14,7 @@ export class UsersRepository {
     });
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<UserEntity> {
     return this.prisma.user.update({
       where: { id },
       data: {
@@ -23,19 +23,29 @@ export class UsersRepository {
     });
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<void> {
     await this.prisma.user.delete({
       where: { id },
     });
   }
 
-  async findAll() {
+  async findAll(): Promise<UserEntity[]> {
     return this.prisma.user.findMany();
   }
 
-  async findOne(id: number) {
+  async findOne(id: number): Promise<UserEntity> {
     return this.prisma.user.findUnique({
       where: { id },
+    });
+  }
+
+  async findManyByName(name: string): Promise<UserEntity[]> {
+    return this.prisma.user.findMany({
+      where: {
+        name: {
+          contains: name,
+        },
+      },
     });
   }
 }
