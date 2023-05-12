@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersRepository } from './repositories/users.repository';
-import { NotFoundError } from 'src/common/errors/types/NotFoundError';
-import { UserAgeError } from 'src/common/errors/types/UserAgeError';
+import { NotFoundError } from '../common/errors/types/NotFoundError';
+import { UserAgeError } from '../common/errors/types/UserAgeError';
 
 @Injectable()
 export class UsersService {
