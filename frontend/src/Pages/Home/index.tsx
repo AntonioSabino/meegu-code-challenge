@@ -1,4 +1,3 @@
-import * as zod from 'zod'
 import { states } from '../../data/states'
 import {
   BirthdateDocumentContainer,
@@ -15,32 +14,7 @@ import {
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { api } from '../../lib/axios'
-
-const formSchema = zod.object({
-  name: zod.string().min(2).max(100),
-  birthdate: zod
-    .string()
-    .refine((value) => /^\d{4}-\d{2}-\d{2}$/.test(value))
-    .refine((value) => {
-      const currentDate = new Date()
-      const eighteenYearsAgo = new Date(
-        currentDate.getFullYear() - 18,
-        currentDate.getMonth(),
-        currentDate.getDate(),
-      )
-      const selectedDate = new Date(value)
-      return selectedDate <= eighteenYearsAgo
-    }, 'Você deve ter mais de 18 anos'),
-  document: zod.string().length(11),
-  acceptedTermsAndConditions: zod.boolean(),
-  zipcode: zod.string().length(8),
-  street: zod.string().min(3).max(100),
-  neighborhood: zod.string().min(3).max(100),
-  city: zod.string().min(3).max(100),
-  state: zod.string().length(2),
-})
-
-type FormInputs = zod.infer<typeof formSchema>
+import { FormInputs, formSchema } from '../../helpers/validationForm'
 
 export default function Home() {
   const {
