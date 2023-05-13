@@ -10,7 +10,7 @@ import {
 } from './styles'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { api } from '../../lib/axios'
+import { createUser } from '../../lib/axios'
 import { FormInputs, formSchema } from '../../helpers/validationForm'
 import NameInput from './components/NameInput'
 import BirthdateInput from './components/BirthdateInput'
@@ -49,14 +49,7 @@ export default function Home() {
       birthdate: new Date(data.birthdate).toISOString(),
     }
 
-    api
-      .post('/users', user)
-      .then((response) => {
-        console.log(response.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    await createUser(user)
 
     reset()
   }
