@@ -1,3 +1,4 @@
+import { UseFormRegister } from 'react-hook-form'
 import { z } from 'zod'
 
 export const formSchema = z.object({
@@ -25,3 +26,7 @@ export const formSchema = z.object({
 })
 
 export type FormInputs = z.infer<typeof formSchema>
+
+export interface InputProps {
+  register: UseFormRegister<FormInputs>
+}
