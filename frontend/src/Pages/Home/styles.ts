@@ -35,6 +35,13 @@ export const FormTitle = styled.h1`
   font-weight: 500;
 `
 
+export const BirthdateDocumentContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+`
+
 export const CepInputContainer = styled.div`
   display: flex;
   gap: 1rem;
@@ -76,6 +83,10 @@ export const FormInput = styled.input`
     color: ${({ theme }) => theme.colors['gray-300']};
     font-weight: 700;
   }
+
+  &.error {
+    border: 2px solid red;
+  }
 `
 export const Select = styled.select`
   width: 100%;
@@ -85,6 +96,16 @@ export const Select = styled.select`
   background-color: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors['gray-600']};
   font-weight: 500;
+`
+
+export const TermsContainer = styled.label`
+  > label {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
 `
 
 export const ButtonSubmit = styled.button`

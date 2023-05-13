@@ -1,6 +1,7 @@
 import * as zod from 'zod'
 import { states } from '../../data/states'
 import {
+  BirthdateDocumentContainer,
   ButtonSubmit,
   CepInputContainer,
   CityStateContainer,
@@ -9,6 +10,7 @@ import {
   FormTitle,
   HomeContainer,
   Select,
+  TermsContainer,
 } from './styles'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -16,7 +18,19 @@ import { api } from '../../lib/axios'
 
 const formSchema = zod.object({
   name: zod.string().min(2).max(100),
-  birthdate: zod.string().refine((value) => /^\d{4}-\d{2}-\d{2}$/.test(value)),
+  birthdate: zod
+    .string()
+    .refine((value) => /^\d{4}-\d{2}-\d{2}$/.test(value))
+    .refine((value) => {
+      const currentDate = new Date()
+      const eighteenYearsAgo = new Date(
+        currentDate.getFullYear() - 18,
+        currentDate.getMonth(),
+        currentDate.getDate(),
+      )
+      const selectedDate = new Date(value)
+      return selectedDate <= eighteenYearsAgo
+    }, 'Você deve ter mais de 18 anos'),
   document: zod.string().length(11),
   acceptedTermsAndConditions: zod.boolean(),
   zipcode: zod.string().length(8),
@@ -29,13 +43,18 @@ const formSchema = zod.object({
 type FormInputs = zod.infer<typeof formSchema>
 
 export default function Home() {
-  const { register, handleSubmit, reset } = useForm<FormInputs>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isValid },
+  } = useForm<FormInputs>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
       birthdate: '',
-      document: '98745632145',
-      acceptedTermsAndConditions: true,
+      document: '',
+      acceptedTermsAndConditions: false,
       zipcode: '',
       street: '',
       neighborhood: '',
@@ -75,15 +94,27 @@ export default function Home() {
             required
           />
         </label>
-        <label>
-          Data de nascimento:
-          <FormInput
-            type="date"
-            placeholder="Data de nascimento"
-            {...register('birthdate')}
-            required
-          />
-        </label>
+        <BirthdateDocumentContainer>
+          <label>
+            Data de nascimento:
+            <FormInput
+              type="date"
+              placeholder="Data de nascimento"
+              {...register('birthdate')}
+              required
+              title="Você deve ter mais de 18 anos"
+            />
+          </label>
+          <label>
+            CPF:
+            <FormInput
+              type="text"
+              placeholder="CPF"
+              {...register('document')}
+              required
+            />
+          </label>
+        </BirthdateDocumentContainer>
         <CepInputContainer>
           <label>
             CEP:
@@ -136,7 +167,19 @@ export default function Home() {
             </Select>
           </label>
         </CityStateContainer>
-        <ButtonSubmit type="submit">Cadastrar</ButtonSubmit>
+        <TermsContainer>
+          <label>
+            <span>Aceitar termos e condições:</span>
+            <input
+              type="checkbox"
+              {...register('acceptedTermsAndConditions')}
+              required
+            />
+          </label>
+        </TermsContainer>
+        <ButtonSubmit type="submit" disabled={!isValid}>
+          Cadastrar
+        </ButtonSubmit>
       </Form>
     </HomeContainer>
   )
