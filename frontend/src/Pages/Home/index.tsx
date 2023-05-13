@@ -12,12 +12,15 @@ import {
 } from './styles'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { api } from '../../lib/axios'
 
 const formSchema = zod.object({
-  nome: zod.string().min(2).max(100),
-  birthDate: zod.string().refine((value) => /^\d{4}-\d{2}-\d{2}$/.test(value)),
-  zipCode: zod.string().length(8),
-  address: zod.string().min(3).max(100),
+  name: zod.string().min(2).max(100),
+  birthdate: zod.string().refine((value) => /^\d{4}-\d{2}-\d{2}$/.test(value)),
+  document: zod.string().length(11),
+  acceptedTermsAndConditions: zod.boolean(),
+  zipcode: zod.string().length(8),
+  street: zod.string().min(3).max(100),
   neighborhood: zod.string().min(3).max(100),
   city: zod.string().min(3).max(100),
   state: zod.string().length(2),
@@ -29,18 +32,33 @@ export default function Home() {
   const { register, handleSubmit, reset } = useForm<FormInputs>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      nome: '',
-      birthDate: '',
-      zipCode: '',
-      address: '',
+      name: '',
+      birthdate: '',
+      document: '98745632145',
+      acceptedTermsAndConditions: true,
+      zipcode: '',
+      street: '',
       neighborhood: '',
       city: '',
       state: '',
     },
   })
 
-  const handleCreateUser = (data: FormInputs) => {
-    console.log(data)
+  const handleCreateUser = async (data: FormInputs) => {
+    const user = {
+      ...data,
+      birthdate: new Date(data.birthdate).toISOString(),
+    }
+
+    api
+      .post('/users', user)
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
     reset()
   }
 
@@ -53,7 +71,7 @@ export default function Home() {
           <FormInput
             type="text"
             placeholder="Nome completo"
-            {...register('nome')}
+            {...register('name')}
             required
           />
         </label>
@@ -62,7 +80,7 @@ export default function Home() {
           <FormInput
             type="date"
             placeholder="Data de nascimento"
-            {...register('birthDate')}
+            {...register('birthdate')}
             required
           />
         </label>
@@ -72,7 +90,7 @@ export default function Home() {
             <FormInput
               type="text"
               placeholder="CEP"
-              {...register('zipCode')}
+              {...register('zipcode')}
               required
             />
           </label>
@@ -83,7 +101,7 @@ export default function Home() {
           <FormInput
             type="text"
             placeholder="Endereço"
-            {...register('address')}
+            {...register('street')}
             required
           />
         </label>
