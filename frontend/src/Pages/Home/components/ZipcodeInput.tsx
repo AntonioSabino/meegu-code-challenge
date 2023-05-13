@@ -10,6 +10,7 @@ export default function ZipcodeInput({ register }: InputProps) {
         placeholder="CEP"
         {...register('zipcode')}
         required
+        title="Digite um CEP válido com 8 números"
       />
     </label>
   )
