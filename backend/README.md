@@ -30,7 +30,7 @@ Este projeto é parte de um desafio para testar seus conhecimentos em desenvolvi
 
 - **Busca de informações do CEP**: 
   
-  - [] Antes de armazenar os dados do usuário, buscar informações sobre o logradouro, bairro, cidade e estado com base no CEP fornecido. Isso pode ser feito realizando uma requisição para uma API pública de busca de CEP, utilizando o ZIPCODE enviado no body. Por exemplo, utilizar a API pública "https://viacep.com.br/ws/01001000/json/" para consultar o CEP 01001000.
+  - [x] Antes de armazenar os dados do usuário, buscar informações sobre o logradouro, bairro, cidade e estado com base no CEP fornecido. Isso pode ser feito realizando uma requisição para uma API pública de busca de CEP, utilizando o ZIPCODE enviado no body. Por exemplo, utilizar a API pública "https://viacep.com.br/ws/01001000/json/" para consultar o CEP 01001000.
 
 - **Atualização de data/hora**: 
 
